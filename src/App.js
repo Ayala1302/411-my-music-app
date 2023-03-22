@@ -1,21 +1,10 @@
 import React, { Component } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import TextField from "@mui/material/TextField";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+// import { createTheme } from "@mui/material/styles";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
 
-const theme = createTheme({
-  primary: {},
-  secondary: {
-    main: "#1976d2",
-  },
-});
 
 // Add a property called loggedIn to your state that has a Boolean value.
 class App extends Component {
@@ -24,14 +13,12 @@ class App extends Component {
 
     this.state = {
       loggedIn: false,
+      online: false,
+      volume: 20,
+      quality: 2,
+      // notifications: [],
     };
   }
-
-  handleClick = () => {
-    this.state.loggedIn
-      ? this.setState({ loggedIn: false })
-      : this.setState({ loggedIn: true });
-  };
 
   render() {
     if (this.state.loggedIn) {
@@ -39,46 +26,81 @@ class App extends Component {
     } else {
       return (
         // the code for your login screen
-        <div className="App"></div>
+        <Login loggedIn={this.state.loggedIn}
+        handleLogin={this.handleLogin} />
       );
     }
   }
-}
-export default function ButtonAppBar() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton></IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            My Music App
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <form className="form" style={{ textAlign: "center", display: "flex" }}>
-        <TextField
-          id="standard-basic"
-          label="Username*"
-          variant="standard"
-          className="TextField"
-        />
+  
+  
+  
+  // ****Functionality for music app****
 
-        <TextField
-          id="standard-basic"
-          label="Password*"
-          variant="standard"
-          className="TextField"
-        />
-        <ThemeProvider theme={theme}>
-          <Button
-            style={{ padding: "0px 75px" }}
-            variant="contained"
-            className="Login"
-          >
-            Login
-          </Button>
-        </ThemeProvider>
-      </form>
-    </Box>
-  );
+
+  // handleNotifications = () => {
+  //   if (this.state.online === true) {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Online"],
+  //     });
+  //   } else {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Your application is offline. You won't be able to share or stream music to other devices."],
+  //     });
+  //   }
+  //   if (this.state.volume > 80) {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Listening to music at a high volume could cause long-term hearing loss."],
+  //     });
+  //   }
+  //   if (this.state.quality === 1) {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Music quality is degraded. Increase quality if your connection allows it."],
+  //     });
+  //   }
+  // };
+
+  // componentDidUpdate = () => {
+  //   if (this.state.online === true) {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Online"],
+  //     });
+  //   } else {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Your application is offline. You won't be able to share or stream music to other devices."],
+  //     });
+  //   }
+  //   if (this.state.volume > 80) {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Listening to music at a high volume could cause long-term hearing loss."],
+  //     });
+  //   }
+  //   if (this.state.quality === 1) {
+  //     this.setState({
+  //       notifications: [...this.state.notifications, "Music quality is degraded. Increase quality if your connection allows it."],
+  //     });
+  //   }
+  // };
+
+  // handleOnline = () => {
+  //   this.state.online
+  //     ? this.setState({ online: false })
+  //     : this.setState({ online: true });
+  // };
+
+  // handleVolume = (event, newValue) => {
+  //   this.setState({ volume: newValue });
+  // };
+
+  // handleQuality = (event) => {
+  //   this.setState({ quality: event.target.value });
+  // };
+
+  handleLogin = () => {
+    this.state.loggedIn
+      ? this.setState({ loggedIn: false })
+      : this.setState({ loggedIn: true });
+  };
+
 }
+
+export default App;
